@@ -1,0 +1,14 @@
+public class JavaApplication1 {
+
+    
+    public static void main(String[] args) {
+       
+        double[][] array = {{1,2},{0,3}};
+        double[][] sarray = {{17.},{12.}};
+Matrix A = new Matrix(array);
+Matrix b = new Matrix(sarray);
+Matrix x = A.solve(b);
+
+
+        
+    }
