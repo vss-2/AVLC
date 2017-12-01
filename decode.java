@@ -43,6 +43,14 @@
 
 					w = w % 26;
 				}
+				
+				if (z % 1 != 0) {
+					z = Math.ceil(z);
+				}
+			
+				if (y % 1 != 0) {
+					y = Math.ceil(y);
+				}
 
 				char chara3 = (char) (z + 96);
 				char charb3 = (char) (y + 96);
