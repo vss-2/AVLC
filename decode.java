@@ -45,13 +45,13 @@
 				}
 				
 				if (z % 1 != 0) {
-					z = Math.ceil(z);
+					z = Math.ceil(z) + 8;
 				}
 			
 				if (y % 1 != 0) {
-					y = Math.ceil(y);
+					y = Math.ceil(y) + 8;
 				}
-
+				
 				char chara3 = (char) (z + 96);
 				char charb3 = (char) (y + 96);
 				char charc3 = (char) (w + 96);
