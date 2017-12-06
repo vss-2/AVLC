@@ -1,8 +1,9 @@
-package avlc;
+package main;
+
 import java.util.*;
 import Jama.Matrix;
 import Jama.util.*;
-public class aas {
+public class main {
 	public static String mod(String s, int m) {
 
 		if (s.length() % m == 0) {
@@ -113,10 +114,19 @@ public class aas {
 				double z = x.get(0,0);
 				double y = x.get(1,0);
 
+			double zaux = z + 0.5;
+			//se 1.6 + 0.5 = 2.1 
+			//no caso se for acima de 0,5 subtrai
+			
+			
+			if(zaux > Math.ceil(z)) { //math floor arredonda para cima
 				if(z%1!=0) {z=Math.round(z+9);}
-				if(y%1!=0) {
-					
-					y=Math.round(y+9);}
+				if(y%1!=0) {y=Math.round(y+9);}
+			}	else {
+				if(z%1!=0) {z=Math.round(z-8);}
+				if(y%1!=0) {y=Math.round(y-8);}
+			}
+				
 				if (z>0){
 					
 					z = z % 26;
@@ -292,10 +302,5 @@ public class aas {
 		}
 
 	}
-	}
-	
-	
-	
-	
-	
 }
+	}
