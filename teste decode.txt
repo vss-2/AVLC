@@ -1,14 +1,301 @@
-public class JavaApplication1 {
+package avlc;
+import java.util.*;
+import Jama.Matrix;
+import Jama.util.*;
+public class aas {
+	public static String mod(String s, int m) {
 
-    
-    public static void main(String[] args) {
-       
-        double[][] array = {{1,2},{0,3}};
-        double[][] sarray = {{17.},{12.}};
-Matrix A = new Matrix(array);
-Matrix b = new Matrix(sarray);
-Matrix x = A.solve(b);
+		if (s.length() % m == 0) {
+		}
+
+		if (s.length() % m != 0) {
+
+			while (s.length() % m != 0) {
+				s = s + s.charAt(s.length() - 1);
+			}
+
+		}
+
+		return s;
+	}
+	public static void main(String[] args) {
+		
+	
+	Scanner in = new Scanner(System.in);
+	
+	System.out.println("1 - codificar \n"
+			+ "2 - decodificar");
+	int option =in.nextInt();
+	if(option==2) {
+		
+		in.nextLine();
+		
+		System.out.println("informe a frase a ser decodificada"); 
+		String frase = in.nextLine();
+		System.out.println("informe o tamanho da matriz");
+		int tamatrizd = in.nextInt();
+		System.out.println("Informe a Matriz");
+
+		int m = tamatrizd;
+		int n = m;
+		double matriz[][] = new double[m][n];
+
+		for (int a = 0; a < m; a++) {
+			for (int b = 0; b < n; b++) {
+				matriz[a][b] = in.nextInt();
+			}
+		}
+		int contde=0;
+		if (tamatrizd == 3) {
+			while (contde < frase.length() / tamatrizd) {
+				double[][] letters = new double[1][tamatrizd];
+
+				letters[1][0] = frase.charAt(0 + contde * 3) - 96;
+				letters[1][1] = frase.charAt(1 + contde * 3) - 96;
+				letters[1][2] = frase.charAt(2 + contde * 3) - 96;
+				contde++;
 
 
-        
-    }
+				Matrix A = new Matrix(matriz);
+				Matrix b = new Matrix(letters);
+				Matrix x = A.solve(b);
+				double z = x.get(0,0);
+				double y = x.get(1, 0);
+				double w = x.get(2,0);
+				if (z >= 26) {
+
+					z = z % 26;
+				}
+				if (y >= 26) {
+
+					y = y % 26;
+				}
+				if (w >= 26) {
+
+					w = w % 26;
+				}
+				
+				char chara3 = (char) (z + 96);
+				char charb3 = (char) (y + 96);
+				char charc3 = (char) (w + 96);
+
+				if (z != 0) {
+					System.out.print(chara3);
+				} else if (z == 0) {
+					System.out.print("z");
+				}
+
+				if (y != 0) {
+					System.out.print(charb3);
+				} else if (y == 0) {
+					System.out.print("z");
+				}
+
+				if (w != 0) {
+					System.out.print(charc3);
+				} else if (w == 0) {
+					System.out.print("z");
+				}
+				contde++;
+			}
+
+		}
+		if (tamatrizd == 2) {
+			while (contde < frase.length() / tamatrizd) {
+				double[][] letters = new double[tamatrizd][1];
+
+				letters[0][0] = frase.charAt(0 + contde * 2) - 96;
+				letters[1][0] = frase.charAt(1 + contde * 2) - 96;
+
+				Matrix A = new Matrix(matriz);
+				Matrix b = new Matrix(letters);
+				Matrix x = A.solve(b);
+				double z = x.get(0,0);
+				double y = x.get(1,0);
+
+				if(z%1!=0) {z=Math.round(z+9);}
+				if(y%1!=0) {
+					
+					y=Math.round(y+9);}
+				if (z>0){
+					
+					z = z % 26;
+				
+				} else {
+					
+					while (z<0){
+						z += 26;
+					}
+					
+				}
+
+				if (y > 0){
+					y = y % 26;
+				} else {
+					while (y<0){
+						y += 26;
+					}
+				}
+					
+					//acima de 0.5 subtrai
+					
+				char chara3 = (char) (z + 96);
+				char charb3 = (char) (y + 96);
+
+				if (z != 0) {
+					System.out.print(chara3);
+				} else if (z == 0) {
+					System.out.print("z");
+				}
+				if (y != 0) {
+					System.out.print(charb3);
+				} else if (y == 0) {
+					System.out.print("z");
+				}
+				contde++;
+			}
+
+		}
+
+
+	
+}
+
+	
+	//// CODIFICA
+	
+	
+	if(option==1) {
+		
+		
+		
+		in.nextLine();
+		System.out.println("Informe a frase a ser codificada:");
+
+		String lul = in.nextLine();
+		String Trocar = lul.toLowerCase().replaceAll(" ", "");
+		// System.out.println(Replacelul);
+		System.out.println/* batata */("Declare o tamanho da matriz");
+
+		int tamatriz = in.nextInt();
+		int cont = 0;
+		System.out.println("Informe a Matriz");
+
+		int m = tamatriz;
+		int n = m;
+		double matriz[][] = new double[m][n];
+		Trocar = mod(Trocar, tamatriz);
+		for (int a = 0; a < m; a++) {
+			for (int b = 0; b < n; b++) {
+				matriz[a][b] = in.nextInt();
+			}
+		}
+		
+		
+		double a, b, c;
+
+		if (tamatriz == 3) {
+			while (cont < Trocar.length() / tamatriz) {
+				double[] letters = new double[tamatriz];
+
+				letters[0] = Trocar.charAt(0 + cont * 3) - 96;
+				letters[1] = Trocar.charAt(1 + cont * 3) - 96;
+				letters[2] = Trocar.charAt(2 + cont * 3) - 96;
+				cont++;
+
+				a = matriz[0][0] * letters[0] + matriz[0][1] * letters[1]
+						+ matriz[0][2] * letters[2];
+				b = matriz[1][0] * letters[0] + matriz[1][1] * letters[1]
+						+ matriz[1][2] * letters[2];
+				c = matriz[2][0] * letters[0] + matriz[2][1] * letters[1]
+						+ matriz[2][2] * letters[2];
+
+				if (a >= 26) {
+
+					a = a % 26;
+				}
+				if (b >= 26) {
+
+					b = b % 26;
+				}
+				if (c >= 26) {
+
+					c = c % 26;
+				}
+
+				char chara3 = (char) (a + 96);
+				char charb3 = (char) (b + 96);
+				char charc3 = (char) (c + 96);
+
+				if (a != 0) {
+					System.out.print(chara3);
+				} else if (a == 0) {
+					System.out.print("z");
+				}
+
+				if (b != 0) {
+					System.out.print(charb3);
+				} else if (b == 0) {
+					System.out.print("z");
+				}
+
+				if (c != 0) {
+					System.out.print(charc3);
+				} else if (c == 0) {
+					System.out.print("z");
+				}
+			}
+
+		}
+
+		if (tamatriz == 2) {
+			while (cont < Trocar.length() / 2) {
+				double[] letters = new double[tamatriz];
+
+				letters[0] = Trocar.charAt(0 + cont * 2) - 96;
+				letters[1] = Trocar.charAt(1 + cont * 2) - 96;
+
+				cont++;
+				/*
+				 * System.out.println(matriz[0][0]+" "+matriz[0][1]);
+				 * System.out.println(matriz[1][0]+" "+matriz[1][1]);
+				 */
+				a = matriz[0][0] * letters[0] + matriz[0][1] * letters[1];
+				b = matriz[1][0] * letters[0] + matriz[1][1] * letters[1];
+
+				if (a >= 26) {
+
+					a = a % 26;
+				}
+				if (b >= 26) {
+
+					b = b % 26;
+				}
+
+				char chara = (char) (a + 96);
+				char charb = (char) (b + 96);
+
+				if (a != 0) {
+					System.out.print(chara);
+				} else if (a == 0) {
+					System.out.print("z");
+				}
+
+				if (b != 0) {
+					System.out.print(charb);
+				} else if (b == 0) {
+					System.out.print("z");
+				}
+
+			}
+
+		}
+
+	}
+	}
+	
+	
+	
+	
+	
+}
